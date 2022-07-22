@@ -33,7 +33,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libc6-dev \
   libbz2-dev \
   libffi-dev \
-  zlib1g-dev
+  zlib1g-dev \
+   # https://github.com/VSCodium/vscodium/pull/1170
+  ripgrep \
+  bc
 
 # Compile python3.9 from source
 RUN curl -O https://www.python.org/ftp/python/3.9.4/Python-3.9.4.tar.xz
