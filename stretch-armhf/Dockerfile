@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libbz2-dev \
   libffi-dev \
   zlib1g-dev \
-   # https://github.com/VSCodium/vscodium/pull/1170
+  # https://github.com/VSCodium/vscodium/pull/1170
   ripgrep \
   bc
 

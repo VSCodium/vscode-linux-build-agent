@@ -14,6 +14,7 @@ RUN chmod a+rwx /tmp
 ENV DBUS_SESSION_BUS_ADDRESS="autolaunch:" \
 	LANG="en_US.UTF-8" \
 	LANGUAGE="en_US.UTF-8" \
+  LC_ALL="en_US.UTF-8" \
 	VISUAL="nano" \
 	EDITOR="nano"
 
@@ -57,6 +58,9 @@ RUN apt-get update && apt-get install -y \
     xvfb \
     tzdata \
     imagemagick \
+    # https://github.com/VSCodium/vscodium/pull/1170
+    ripgrep \
+    bc \
   && curl https://chromium.googlesource.com/chromium/src/+/HEAD/build/install-build-deps.sh\?format\=TEXT | base64 --decode | cat > /setup/install-build-deps.sh \
   && chmod +x /setup/install-build-deps.sh \
   && bash /setup/install-build-deps.sh --syms --no-prompt --no-chromeos-fonts --no-arm --no-nacl \
@@ -90,4 +94,4 @@ RUN mkdir -p /var/run/dbus \
 # USER builduser
 # WORKDIR /home/builduser
 
-ENTRYPOINT ["/usr/local/share/init-dbus.sh"] 
+ENTRYPOINT ["/usr/local/share/init-dbus.sh"]
