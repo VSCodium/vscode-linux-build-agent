@@ -58,8 +58,6 @@ RUN apt-get update && apt-get install -y \
     xvfb \
     tzdata \
     imagemagick \
-    # https://github.com/VSCodium/vscodium/pull/1170
-    ripgrep \
     bc \
   && curl https://chromium.googlesource.com/chromium/src/+/HEAD/build/install-build-deps.sh\?format\=TEXT | base64 --decode | cat > /setup/install-build-deps.sh \
   && chmod +x /setup/install-build-deps.sh \
@@ -81,9 +79,13 @@ RUN echo 'builduser ALL=NOPASSWD: ALL' >> /etc/sudoers.d/50-builduser \
   && echo 'Defaults    env_keep += "DEBIAN_FRONTEND"' >> /etc/sudoers.d/env_keep
 
 # Dotnet
-RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
-RUN dpkg -i packages-microsoft-prod.deb
-RUN apt-get update && apt-get install -y dotnet-sdk-2.1
+RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb \
+    dpkg -i packages-microsoft-prod.deb \
+    apt-get update && apt-get install -y dotnet-sdk-2.1
+
+# ripgrep
+RUN wget -q https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb \
+    dpkg -i ripgrep_13.0.0_amd64.deb
 
 COPY init-dbus.sh /usr/local/share/
 

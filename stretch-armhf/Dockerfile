@@ -34,8 +34,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libbz2-dev \
   libffi-dev \
   zlib1g-dev \
-  # https://github.com/VSCodium/vscodium/pull/1170
-  ripgrep \
   bc
 
 # Compile python3.9 from source
@@ -54,6 +52,12 @@ RUN update-ca-certificates --fresh
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y yarn
+
+# ripgrep
+RUN curl -L -O https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-arm-unknown-linux-gnueabihf.tar.gz \
+    tar xfz ripgrep-13.0.0-arm-unknown-linux-gnueabihf.tar.gz \
+    mv ripgrep-13.0.0-arm-unknown-linux-gnueabihf/rg /usr/bin/ \
+    rm -rf ripgrep*
 
 ENV AS=/usr/bin/arm-linux-gnueabihf-as \
   AR=/usr/bin/arm-linux-gnueabihf-ar \
