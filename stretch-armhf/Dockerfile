@@ -55,9 +55,9 @@ RUN apt-get update && apt-get install -y yarn
 
 # ripgrep
 RUN curl -L -O https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-arm-unknown-linux-gnueabihf.tar.gz \
-    tar xfz ripgrep-13.0.0-arm-unknown-linux-gnueabihf.tar.gz \
-    mv ripgrep-13.0.0-arm-unknown-linux-gnueabihf/rg /usr/bin/ \
-    rm -rf ripgrep*
+  tar xfz ripgrep-13.0.0-arm-unknown-linux-gnueabihf.tar.gz \
+  mv ripgrep-13.0.0-arm-unknown-linux-gnueabihf/rg /usr/bin/ \
+  rm -rf ripgrep*
 
 ENV AS=/usr/bin/arm-linux-gnueabihf-as \
   AR=/usr/bin/arm-linux-gnueabihf-ar \

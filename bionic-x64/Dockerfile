@@ -80,12 +80,12 @@ RUN echo 'builduser ALL=NOPASSWD: ALL' >> /etc/sudoers.d/50-builduser \
 
 # Dotnet
 RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb \
-    dpkg -i packages-microsoft-prod.deb \
-    apt-get update && apt-get install -y dotnet-sdk-2.1
+  dpkg -i packages-microsoft-prod.deb \
+  apt-get update && apt-get install -y dotnet-sdk-2.1
 
 # ripgrep
 RUN wget -q https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb \
-    dpkg -i ripgrep_13.0.0_amd64.deb
+  dpkg -i ripgrep_13.0.0_amd64.deb
 
 COPY init-dbus.sh /usr/local/share/
 
