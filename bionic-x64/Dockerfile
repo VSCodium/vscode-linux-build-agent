@@ -59,6 +59,7 @@ RUN apt-get update && apt-get install -y \
     tzdata \
     imagemagick \
     bc \
+  && locale-gen en_US.UTF-8 \
   && curl https://chromium.googlesource.com/chromium/src/+/HEAD/build/install-build-deps.sh\?format\=TEXT | base64 --decode | cat > /setup/install-build-deps.sh \
   && chmod +x /setup/install-build-deps.sh \
   && bash /setup/install-build-deps.sh --syms --no-prompt --no-chromeos-fonts --no-arm --no-nacl \
