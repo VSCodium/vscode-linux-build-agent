@@ -53,11 +53,6 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y yarn
 
-# ripgrep (VSCodium)
-RUN curl -L -O https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-arm-unknown-linux-gnueabihf.tar.gz
-RUN tar xfz ripgrep-13.0.0-arm-unknown-linux-gnueabihf.tar.gz
-RUN mv ripgrep-13.0.0-arm-unknown-linux-gnueabihf/rg /usr/bin/
-
 ENV AS=/usr/bin/aarch64-linux-gnu-as \
   AR=/usr/bin/aarch64-linux-gnu-ar \
   CC=/usr/bin/aarch64-linux-gnu-gcc \
