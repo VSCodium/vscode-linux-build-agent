@@ -16,7 +16,7 @@ ARG INSTALL_PKGS="devtoolset-8-gcc \
     python3"
 
 # setup nodejs repo
-RUN curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -
+RUN curl --silent --location https://rpm.nodesource.com/setup_18.x | bash -
 
 RUN yum install -y centos-release-scl-rh && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
