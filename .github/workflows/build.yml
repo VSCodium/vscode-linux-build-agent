@@ -10,10 +10,12 @@ jobs:
       fail-fast: false
       matrix:
         arch:
-          - bionic-x64
-          - bionic-arm64
-          - bionic-armhf
-          - bionic-ppc64le
+          - alpine-x64
+          - alpine-arm64
+          - focal-x64
+          - focal-arm64
+          - focal-armhf
+          - focal-ppc64le
           - centos7-devtoolset8-arm64
           - centos7-devtoolset8-x64
 
