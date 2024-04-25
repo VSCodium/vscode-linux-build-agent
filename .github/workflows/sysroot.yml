@@ -1,0 +1,81 @@
+name: sysroot
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  sysroot:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - config: 'ppc64el-gcc-8.5.0-glibc-2.28.config'
+            arch: 'ppc64el'
+            pkg: 'powerpc64le-linux-gnu'
+            suffix: '-glibc-2.28'
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 'Prepare dependencies'
+        run: |
+          set -e
+          sudo apt-get update
+          sudo apt-get install -y gcc g++ gperf bison flex texinfo help2man make libncurses5-dev \
+          python3-dev autoconf automake libtool libtool-bin gawk wget bzip2 xz-utils unzip \
+          patch rsync meson ninja-build curl
+      
+      - name: 'Setup crosstool-ng'
+        run: |
+          set -e
+          wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.26.0.tar.bz2
+          tar -xjf crosstool-ng-1.26.0.tar.bz2
+          cd crosstool-ng-1.26.0
+          ./configure --prefix=`pwd`/out
+          make
+          make install
+      
+      - name: 'Build toolchain'
+        run: |
+          set -e
+          export PATH=$PATH:`pwd`/crosstool-ng-1.26.0/out/bin
+          mkdir toolchain-dir
+          cd toolchain-dir
+          cat ../${{ matrix.config }} > .config
+          ct-ng build
+      
+      - name: 'Install additional libraries'
+        run: |
+          set -e
+          chmod 0755 -R `pwd`/toolchain-dir/${{ matrix.pkg }}
+          sudo ./sysroot-scripts/sysroot-creator.sh build ${{ matrix.arch }} \
+          `pwd`/toolchain-dir/${{ matrix.pkg }}/${{ matrix.pkg }}/sysroot
+
+      - name: 'Create pipeline asset'
+        run: |
+          set -e
+          cd toolchain-dir
+          tar -czf ${{ matrix.pkg }}${{ matrix.suffix }}.tar.gz ${{ matrix.pkg }}
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      
+      - name: Publish artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: toolchain-dir/${{ matrix.pkg }}${{ matrix.suffix }}.tar.gz
+          asset_name: ${{ matrix.pkg }}${{ matrix.suffix }}.tar.gz
+          asset_content_type: application/gzip
