@@ -17,9 +17,9 @@ jobs:
           - bionic-armhf
           - bionic-ppc64le
           - focal-riscv64
-          # - focal-x64
-          # - focal-arm64
-          # - focal-armhf
+          - focal-x64
+          - focal-arm64
+          - focal-armhf
           # - focal-ppc64le
           # - centos7-devtoolset8-arm32v7
           - centos7-devtoolset8-arm64
