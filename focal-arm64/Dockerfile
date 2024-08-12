@@ -54,10 +54,9 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/so
 RUN apt-get update && apt-get install -y yarn
 
 # Node.js
-RUN curl --silent --location https://deb.nodesource.com/setup_18.x | sudo -E bash -
+RUN curl --silent --location https://deb.nodesource.com/setup_20.x | sudo -E bash -
 RUN apt-get update && apt-get install -y nodejs
-RUN npm install -g npm@latest
-RUN npm install -g node-gyp
+RUN npm install -g npm@latest node-gyp yarn
 
 # Install docker client
 RUN sudo mkdir -m 0755 -p /etc/apt/keyrings

@@ -68,8 +68,8 @@ RUN apt-get update && apt-get install -y \
 #   && echo 'Defaults    env_keep += "DEBIAN_FRONTEND"' >> /etc/sudoers.d/env_keep
 
 # Node.js
-RUN wget https://unofficial-builds.nodejs.org/download/release/v18.19.0/node-v18.19.0-linux-x64-glibc-217.tar.xz
-RUN tar --strip-components 1 -xvf node-v18.19.0-linux-x64-glibc-217.tar.xz --directory /usr/local/
+RUN curl --silent --location https://deb.nodesource.com/setup_20.x | sudo -E bash -
+RUN apt-get update && apt-get install -y nodejs
 RUN npm install -g npm@latest node-gyp yarn
 
 # Set python3 as default
