@@ -17,8 +17,10 @@ RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-security main un
 RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
 RUN dpkg --add-architecture armhf
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  gcc-8-arm-linux-gnueabihf \
-  g++-8-arm-linux-gnueabihf \
+  gcc-10 \
+  g++-10 \
+  gcc-10-arm-linux-gnueabihf \
+  g++-10-arm-linux-gnueabihf \
   binutils-arm-linux-gnueabihf \
   build-essential \
   git \
@@ -58,6 +60,14 @@ RUN sudo mkdir -m 0755 -p /etc/apt/keyrings
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 RUN echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 RUN sudo apt-get update && sudo apt-get install -y docker-ce
+
+# Set gcc-10 as default
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
+
+# Check compiler toolchain
+RUN gcc --version
+RUN g++ --version
 
 # Disable user so it can run on GH (VSCodium)
 # USER builduser

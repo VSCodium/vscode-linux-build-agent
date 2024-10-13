@@ -2,6 +2,8 @@ ARG REPO=mcr.microsoft.com/mirror/docker/library/ubuntu
 ARG TAG=20.04
 FROM ${REPO}:${TAG}
 
+docker run -ti mcr.microsoft.com/mirror/docker/library/ubuntu:20.04 bash
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Disable user so it can run on GH (VSCodium)
@@ -53,6 +55,8 @@ RUN apt-get update && apt-get install -y \
     # VSCodium
     jq \
     imagemagick \
+    gcc-10 \
+    g++-10 \
   && curl https://chromium.googlesource.com/chromium/src/+/HEAD/build/install-build-deps.sh\?format\=TEXT | base64 --decode | cat > /setup/install-build-deps.sh \
   && curl https://chromium.googlesource.com/chromium/src/+/HEAD/build/install-build-deps.py\?format\=TEXT | base64 --decode | cat > /setup/install-build-deps.py \
   # Remove snapcraft to avoid issues on docker build
@@ -81,6 +85,10 @@ RUN sudo mkdir -m 0755 -p /etc/apt/keyrings
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 RUN echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 RUN sudo apt-get update && sudo apt-get install -y docker-ce
+
+# Set gcc-10 as default
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
 
 # Check compiler toolchain
 RUN gcc --version

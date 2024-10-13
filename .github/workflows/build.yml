@@ -11,19 +11,13 @@ jobs:
       matrix:
         arch:
           - alpine-x64
-          # - alpine-arm64
-          - bionic-x64
-          - bionic-arm64
-          - bionic-armhf
-          - bionic-ppc64le
+          - alpine-arm64
           - focal-riscv64
           - focal-x64
           - focal-arm64
           - focal-armhf
           # - focal-ppc64le
-          # - centos7-devtoolset8-arm32v7
           - centos7-devtoolset8-arm64
-          - centos7-devtoolset8-ppc64le
           - centos7-devtoolset8-x64
           - bionic-devtoolset-arm32v7
           - bionic-devtoolset-ppc64le
