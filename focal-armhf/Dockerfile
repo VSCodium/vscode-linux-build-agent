@@ -59,10 +59,6 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor
 RUN echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 RUN sudo apt-get update && sudo apt-get install -y docker-ce
 
-# Set gcc-10 as default
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
-RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 10
-
 # Check compiler toolchain
 RUN gcc --version
 RUN g++ --version
