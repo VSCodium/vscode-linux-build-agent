@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libxkbfile-dev:ppc64el \
   libsecret-1-dev:ppc64el \
   libkrb5-dev:ppc64el \
+  libatomic1:ppc64el \
   curl \
   gnupg \
   unzip \
@@ -45,8 +46,10 @@ RUN curl -L -O https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-li
     tar -xzf node-v${NODE_VERSION}-linux-ppc64le.tar.gz && \
     cp -R node-v${NODE_VERSION}-linux-ppc64le/* /usr/local/ && \
     rm -rf node-v${NODE_VERSION}-linux-ppc64le* && \
-    node --version && \
-    npm install -g yarn
+    node --version
+
+# install yarn & node-gyp
+RUN npm install -g yarn node-gyp
 
 RUN mkdir -p /root/vscode
 WORKDIR /root/vscode
