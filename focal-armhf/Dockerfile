@@ -17,12 +17,8 @@ RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-security main un
 RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
 RUN dpkg --add-architecture armhf
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  gcc-10 \
-  g++-10 \
   gcc-10-arm-linux-gnueabihf \
   g++-10-arm-linux-gnueabihf \
-  gcc-8-arm-linux-gnueabihf \
-  g++-8-arm-linux-gnueabihf \
   binutils-arm-linux-gnueabihf \
   build-essential \
   git \
@@ -77,8 +73,8 @@ RUN g++ --version
 
 ENV AS=/usr/bin/arm-linux-gnueabihf-as \
   AR=/usr/bin/arm-linux-gnueabihf-ar \
-  CC=/usr/bin/arm-linux-gnueabihf-gcc-8 \
-  CPP=/usr/bin/arm-linux-gnueabihf-cpp-8 \
-  CXX=/usr/bin/arm-linux-gnueabihf-g++-8 \
+  CC=/usr/bin/arm-linux-gnueabihf-gcc-10 \
+  CPP=/usr/bin/arm-linux-gnueabihf-cpp-10 \
+  CXX=/usr/bin/arm-linux-gnueabihf-g++-10 \
   LD=/usr/bin/arm-linux-gnueabihf-ld \
   PKG_CONFIG_PATH=/usr/lib/arm-linux-gnueabihf/pkgconfig
