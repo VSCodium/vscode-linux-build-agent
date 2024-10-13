@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   g++-10 \
   gcc-10-arm-linux-gnueabihf \
   g++-10-arm-linux-gnueabihf \
+  gcc-8-arm-linux-gnueabihf \
+  g++-8-arm-linux-gnueabihf \
   binutils-arm-linux-gnueabihf \
   build-essential \
   git \

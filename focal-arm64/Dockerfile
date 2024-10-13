@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   g++-10 \
   gcc-10-aarch64-linux-gnu \
   g++-10-aarch64-linux-gnu \
+  gcc-8-aarch64-linux-gnu \
+  g++-8-aarch64-linux-gnu \
   binutils-aarch64-linux-gnu \
   build-essential \
   git \
