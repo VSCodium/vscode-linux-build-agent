@@ -2,8 +2,6 @@ ARG REPO=mcr.microsoft.com/mirror/docker/library/ubuntu
 ARG TAG=20.04
 FROM ${REPO}:${TAG}
 
-docker run -ti mcr.microsoft.com/mirror/docker/library/ubuntu:20.04 bash
-
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Disable user so it can run on GH (VSCodium)
