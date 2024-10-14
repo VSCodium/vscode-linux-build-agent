@@ -10,17 +10,17 @@ jobs:
       fail-fast: false
       matrix:
         arch:
-          - alpine-x64
           - alpine-arm64
-          - focal-riscv64
-          - focal-x64
-          - focal-arm64
-          - focal-armhf
-          # - focal-ppc64le
-          # - centos7-devtoolset8-arm64
-          # - centos7-devtoolset8-x64
+          - alpine-x64
           - bionic-devtoolset-arm32v7
           # - bionic-devtoolset-ppc64le
+          # - centos7-devtoolset8-arm64
+          # - centos7-devtoolset8-x64
+          - focal-arm64
+          - focal-armhf
+          - focal-ppc64le
+          - focal-riscv64
+          - focal-x64
           - focal-devtoolset-ppc64le
           - focal-devtoolset-riscv64
 
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - uses: docker/setup-qemu-action@v2
-        if: matrix.arch == 'centos7-devtoolset8-arm32v7' || matrix.arch == 'centos7-devtoolset8-arm64' || matrix.arch == 'centos7-devtoolset8-ppc64le' || matrix.arch == 'alpine-arm64' || matrix.arch == 'bionic-devtoolset-arm32v7' || matrix.arch == 'bionic-devtoolset-ppc64le' || matrix.arch == 'focal-devtoolset-riscv64' || matrix.arch == 'focal-riscv64'
+        if: "!endsWith(matrix.arch, 'x64')"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
