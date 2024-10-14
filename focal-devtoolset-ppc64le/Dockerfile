@@ -51,6 +51,14 @@ RUN curl -L -O https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-li
 # install yarn & node-gyp
 RUN npm install -g yarn node-gyp
 
+# Set gcc-10 as default
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/powerpc64le-linux-gnu-gcc-10 10
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/powerpc64le-linux-gnu-g++-10 10
+
+# Check compiler toolchain
+RUN gcc --version
+RUN g++ --version
+
 RUN mkdir -p /root/vscode
 WORKDIR /root/vscode
 
