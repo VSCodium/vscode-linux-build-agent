@@ -23,12 +23,17 @@ jobs:
           - focal-x64
           - focal-devtoolset-ppc64le
           - focal-devtoolset-riscv64
+          - trixie-devtoolset-loong64
 
     steps:
       - uses: actions/checkout@v3
 
       - uses: docker/setup-qemu-action@v2
-        if: "!endsWith(matrix.arch, 'x64')"
+        if: "!endsWith(matrix.arch, 'x64') && !endsWith(matrix.arch, 'loong64')"
+
+      - name: Set up QEMU for Loong64
+        run: docker run --rm --privileged loongcr.lcpu.dev/multiarch/archlinux --reset -p yes
+        if: "endsWith(matrix.arch, 'loong64')"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
