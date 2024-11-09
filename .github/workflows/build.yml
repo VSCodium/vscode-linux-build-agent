@@ -24,6 +24,7 @@ jobs:
           - focal-devtoolset-ppc64le
           - focal-devtoolset-riscv64
           - trixie-devtoolset-loong64
+          - focal-devtoolset-s390x
 
     steps:
       - uses: actions/checkout@v3
