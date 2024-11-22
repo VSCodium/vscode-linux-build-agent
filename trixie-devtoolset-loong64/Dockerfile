@@ -9,9 +9,6 @@ RUN apt-get update && \
   apt-get install -y --no-install-recommends \
     binutils \
     build-essential \
-    # build-essential will offer gcc-14 and g++-14, which is overly new for us.
-    gcc-12 \
-    g++-12 \
     git \
     pkg-config \
     fakeroot \
@@ -30,10 +27,6 @@ RUN apt-get update && \
     unzip \
     # VSCodium
     jq
-
-# set gcc-12 and g++-12 as default (gcc doesn't support loong64 until 12.1)
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 1 && \
-  update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 1
 
 # set python3 as default
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \

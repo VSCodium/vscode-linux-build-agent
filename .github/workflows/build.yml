@@ -21,6 +21,7 @@ jobs:
           - focal-ppc64le
           - focal-riscv64
           - focal-x64
+          - trixie-loong64
           - focal-devtoolset-ppc64le
           - focal-devtoolset-riscv64
           - trixie-devtoolset-loong64
