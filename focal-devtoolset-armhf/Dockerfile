@@ -16,7 +16,7 @@ RUN dpkg --add-architecture armhf
 RUN apt-get update && apt-get install -y --no-install-recommends \
   gcc-10-arm-linux-gnueabihf \
   g++-10-arm-linux-gnueabihf \
-  binutils-arm-linux-gnu \
+  binutils-arm-linux-gnueabihf \
   build-essential \
   git \
   pkg-config \
