@@ -12,11 +12,7 @@ jobs:
         arch:
           - alpine-arm64
           - alpine-x64
-          - bionic-devtoolset-arm32v7
           # - bionic-devtoolset-ppc64le
-          # - centos7-devtoolset8-arm64
-          # - centos7-devtoolset8-x64
-          - centos7-devtoolset10-x64
           - focal-arm64
           - focal-armhf
           - focal-ppc64le

@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libsecret-1-dev:arm64 \
   libkrb5-dev:arm64 \
   libatomic1:arm64 \
+  libc6:amd64 \
   curl \
   gnupg \
   unzip \

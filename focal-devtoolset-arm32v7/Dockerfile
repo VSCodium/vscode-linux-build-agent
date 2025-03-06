@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libsecret-1-dev:armhf \
   libkrb5-dev:armhf \
   libatomic1:armhf \
+  libc6:armhf \
   curl \
   gnupg \
   unzip \
