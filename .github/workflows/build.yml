@@ -15,16 +15,16 @@ jobs:
           # - bionic-devtoolset-ppc64le
           - focal-arm64
           - focal-armhf
-          - focal-ppc64le
+          # - focal-ppc64le
           - focal-riscv64
           - focal-x64
-          - focal-devtoolset-arm32v7
           - focal-devtoolset-arm64
+          - focal-devtoolset-armhf
           - focal-devtoolset-ppc64le
           - focal-devtoolset-riscv64
           - focal-devtoolset-s390x
           - focal-devtoolset-x64
-          - trixie-loong64
+          # - trixie-loong64
           - trixie-devtoolset-loong64
 
     steps:

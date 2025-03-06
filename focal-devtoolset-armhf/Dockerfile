@@ -14,8 +14,8 @@ RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-security main un
 RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
 RUN dpkg --add-architecture armhf
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  gcc-10-arm-linux-gnu \
-  g++-10-arm-linux-gnu \
+  gcc-10-arm-linux-gnueabihf \
+  g++-10-arm-linux-gnueabihf \
   binutils-arm-linux-gnu \
   build-essential \
   git \
