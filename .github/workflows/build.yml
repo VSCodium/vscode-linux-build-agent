@@ -16,16 +16,20 @@ jobs:
           # - bionic-devtoolset-ppc64le
           # - centos7-devtoolset8-arm64
           # - centos7-devtoolset8-x64
+          - centos7-devtoolset10-x64
           - focal-arm64
           - focal-armhf
           - focal-ppc64le
           - focal-riscv64
           - focal-x64
-          - trixie-loong64
+          - focal-devtoolset-arm32v7
+          - focal-devtoolset-arm64
           - focal-devtoolset-ppc64le
           - focal-devtoolset-riscv64
-          - trixie-devtoolset-loong64
           - focal-devtoolset-s390x
+          - focal-devtoolset-x64
+          - trixie-loong64
+          - trixie-devtoolset-loong64
 
     steps:
       - uses: actions/checkout@v3
