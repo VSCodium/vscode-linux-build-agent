@@ -12,7 +12,7 @@ RUN sed -i "s/^deb/deb [arch=amd64,i386]/g" /etc/apt/sources.list
 RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal main universe multiverse restricted" | tee -a /etc/apt/sources.list
 RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-security main universe multiverse restricted" | tee -a /etc/apt/sources.list
 RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
-RUN dpkg --add-architecture armhf
+RUN dpkg --add-architecture arm64
 RUN apt-get update && apt-get install -y --no-install-recommends \
   gcc-10-aarch64-linux-gnu \
   g++-10-aarch64-linux-gnu \
@@ -31,7 +31,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libsecret-1-dev:arm64 \
   libkrb5-dev:arm64 \
   libatomic1:arm64 \
-  libc6:amd64 \
   curl \
   gnupg \
   unzip \
