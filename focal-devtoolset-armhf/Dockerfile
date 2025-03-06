@@ -31,7 +31,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libsecret-1-dev:armhf \
   libkrb5-dev:armhf \
   libatomic1:armhf \
-  libc6:armhf \
   curl \
   gnupg \
   unzip \
@@ -53,8 +52,8 @@ RUN curl -L -O https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-li
 RUN npm install -g yarn node-gyp
 
 # Set gcc-10 as default
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/arm-linux-gnu-gcc-10 10
-RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/arm-linux-gnu-g++-10 10
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/arm-linux-gnueabihf-gcc-10 10
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/arm-linux-gnueabihf-g++-10 10
 
 # Check compiler toolchain
 RUN gcc --version
@@ -63,10 +62,10 @@ RUN g++ --version
 RUN mkdir -p /root/vscode
 WORKDIR /root/vscode
 
-ENV AS=/usr/bin/arm-linux-gnu-as \
-  AR=/usr/bin/arm-linux-gnu-ar \
-  CC=/usr/bin/arm-linux-gnu-gcc-10 \
-  CPP=/usr/bin/arm-linux-gnu-cpp-10 \
-  CXX=/usr/bin/arm-linux-gnu-g++-10 \
-  LD=/usr/bin/arm-linux-gnu-ld \
-  PKG_CONFIG_PATH=/usr/lib/arm-linux-gnu/pkgconfig
+ENV AS=/usr/bin/arm-linux-gnueabihf-as \
+  AR=/usr/bin/arm-linux-gnueabihf-ar \
+  CC=/usr/bin/arm-linux-gnueabihf-gcc-10 \
+  CPP=/usr/bin/arm-linux-gnueabihf-cpp-10 \
+  CXX=/usr/bin/arm-linux-gnueabihf-g++-10 \
+  LD=/usr/bin/arm-linux-gnueabihf-ld \
+  PKG_CONFIG_PATH=/usr/lib/arm-linux-gnueabihf/pkgconfig
