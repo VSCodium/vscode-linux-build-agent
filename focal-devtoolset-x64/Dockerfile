@@ -53,3 +53,14 @@ RUN g++ --version
 
 RUN mkdir -p /root/vscode
 WORKDIR /root/vscode
+
+RUN ls -la /usr/bin/
+RUN ls -la /usr/lib/pkgconfig
+
+ENV AS=/usr/bin/as \
+  AR=/usr/bin/ar \
+  CC=/usr/bin/gcc-10 \
+  CPP=/usr/bin/cpp-10 \
+  CXX=/usr/bin/g++-10 \
+  LD=/usr/bin/ld \
+  PKG_CONFIG_PATH=/usr/lib/pkgconfig
