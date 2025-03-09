@@ -1,18 +1,18 @@
-ARG REPO=loongarch64/debian
-ARG TAG=latest
+ARG REPO=linuxdeepin/deepin
+ARG TAG=beige-loong64-v1.4.0
 FROM ${REPO}:${TAG}
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG NODE_VERSION="20.16.0"
 
-RUN apt-get update && \
+RUN echo 'deb http://mirrors.kernel.org/deepin/beige beige main commercial community' > /etc/apt/sources.list && \
+  apt-get update && \
   apt-get install -y --no-install-recommends \
     binutils \
     build-essential \
     git \
     pkg-config \
     fakeroot \
-    rpm \
     sudo \
     apt-transport-https \
     ca-certificates \

@@ -12,6 +12,8 @@ jobs:
         arch:
           - alpine-arm64
           - alpine-x64
+          - beige-loong64
+          - beige-devtoolset-loong64
           # - bionic-devtoolset-ppc64le
           - focal-arm64
           - focal-armhf
@@ -24,8 +26,6 @@ jobs:
           - focal-devtoolset-riscv64
           - focal-devtoolset-s390x
           - focal-devtoolset-x64
-          # - trixie-loong64
-          - trixie-devtoolset-loong64
 
     steps:
       - uses: actions/checkout@v3
