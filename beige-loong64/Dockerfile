@@ -1,5 +1,5 @@
-ARG REPO=debian
-ARG TAG=unstable
+ARG REPO=linuxdeepin/deepin
+ARG TAG=beige-amd64-v1.4.0
 FROM ${REPO}:${TAG}
 
 ARG DOCKER_CE_VERSION=27.3.1
@@ -10,19 +10,19 @@ ARG DOCKER_CE_VERSION=27.3.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN dpkg --add-architecture loong64 && \
+  echo 'deb [arch=amd64,i386,loong64] http://mirrors.kernel.org/deepin/beige beige main commercial community' > /etc/apt/sources.list && \
   apt-get update && \
-  apt-get install -y debian-ports-archive-keyring && \
-  echo "deb [arch=loong64] http://ftp.ports.debian.org/debian-ports sid main" >> /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get install -y --no-install-recommends \
-    gcc-14-loongarch64-linux-gnu \
-    g++-14-loongarch64-linux-gnu \
+  # --force-overwrite to work around a strange error:
+  # dpkg: error processing archive /tmp/apt-dpkg-install-sG9gCG/20-linux-libc-dev_23.01.01.18_amd64.deb (--unpack):
+  # trying to overwrite shared '/usr/share/doc/linux-libc-dev/changelog.gz', which is different from other instances of package linux-libc-dev:amd64
+  apt-get install -y -f -o Dpkg::Options::="--force-overwrite" --no-install-recommends \
+    gcc-12-loongarch64-linux-gnu \
+    g++-12-loongarch64-linux-gnu \
     binutils-loongarch64-linux-gnu \
     build-essential \
     git \
     pkg-config \
     fakeroot \
-    rpm \
     sudo \
     apt-transport-https \
     ca-certificates \
@@ -63,8 +63,8 @@ RUN gcc --version && \
 
 ENV AS=/usr/bin/loongarch64-linux-gnu-as \
   AR=/usr/bin/loongarch64-linux-gnu-ar \
-  CC=/usr/bin/loongarch64-linux-gnu-gcc-14 \
-  CPP=/usr/bin/loongarch64-linux-gnu-cpp-14 \
-  CXX=/usr/bin/loongarch64-linux-gnu-g++-14 \
+  CC=/usr/bin/loongarch64-linux-gnu-gcc-12 \
+  CPP=/usr/bin/loongarch64-linux-gnu-cpp-12 \
+  CXX=/usr/bin/loongarch64-linux-gnu-g++-12 \
   LD=/usr/bin/loongarch64-linux-gnu-ld \
   PKG_CONFIG_PATH=/usr/lib/loongarch64-linux-gnu/pkgconfig
