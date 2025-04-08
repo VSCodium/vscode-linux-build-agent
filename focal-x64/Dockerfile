@@ -78,10 +78,6 @@ RUN npm install -g npm@latest node-gyp yarn
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 RUN python --version
 
-# Rust
-RUN curl https://sh.rustup.rs -sSf | sudo -E bash -s -- -y
-RUN echo '. "$HOME/.cargo/env"' > /etc/profile.d/cargo-env.sh
-
 # Install docker client
 RUN sudo mkdir -m 0755 -p /etc/apt/keyrings
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
