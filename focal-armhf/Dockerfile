@@ -54,7 +54,7 @@ RUN apt-get update && apt-get install -y nodejs
 RUN npm install -g npm@latest node-gyp yarn
 
 # Rust
-RUN curl https://sh.rustup.rs -sSf | sudo -E bash -
+RUN curl https://sh.rustup.rs -sSf | sudo -E bash -s -- -y
 
 # Install docker client
 RUN sudo mkdir -m 0755 -p /etc/apt/keyrings

@@ -79,7 +79,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 RUN python --version
 
 # Rust
-RUN curl https://sh.rustup.rs -sSf | sudo -E bash -
+RUN curl https://sh.rustup.rs -sSf | sudo -E bash -s -- -y
 
 # Install docker client
 RUN sudo mkdir -m 0755 -p /etc/apt/keyrings
