@@ -55,7 +55,6 @@ RUN apt-get update && apt-get install -y \
     imagemagick \
     gcc-10 \
     g++-10 \
-    cargo \
   && curl https://chromium.googlesource.com/chromium/src/+/HEAD/build/install-build-deps.sh\?format\=TEXT | base64 --decode | cat > /setup/install-build-deps.sh \
   && curl https://chromium.googlesource.com/chromium/src/+/HEAD/build/install-build-deps.py\?format\=TEXT | base64 --decode | cat > /setup/install-build-deps.py \
   # Remove snapcraft to avoid issues on docker build
@@ -78,6 +77,9 @@ RUN npm install -g npm@latest node-gyp yarn
 # Set python3 as default
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 RUN python --version
+
+# Rust
+RUN curl https://sh.rustup.rs -sSf | sudo -E bash -
 
 # Install docker client
 RUN sudo mkdir -m 0755 -p /etc/apt/keyrings

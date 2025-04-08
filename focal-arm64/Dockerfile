@@ -37,8 +37,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   gnupg \
   unzip \
   # VSCodium
-  jq \
-  cargo
+  jq
 
 # Disable user so it can run on GH (VSCodium)
 # # No Sudo Prompt
@@ -53,6 +52,9 @@ RUN python --version
 RUN curl --silent --location https://deb.nodesource.com/setup_20.x | sudo -E bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN npm install -g npm@latest node-gyp yarn
+
+# Rust
+RUN curl https://sh.rustup.rs -sSf | sudo -E bash -
 
 # Install docker client
 RUN sudo mkdir -m 0755 -p /etc/apt/keyrings
