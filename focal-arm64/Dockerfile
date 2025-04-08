@@ -55,6 +55,7 @@ RUN npm install -g npm@latest node-gyp yarn
 
 # Rust
 RUN curl https://sh.rustup.rs -sSf | sudo -E bash -s -- -y
+RUN echo '. "$HOME/.cargo/env"' >> ~/.bashrc
 
 # Install docker client
 RUN sudo mkdir -m 0755 -p /etc/apt/keyrings
