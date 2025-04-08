@@ -37,7 +37,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   gnupg \
   unzip \
   # VSCodium
-  jq
+  jq \
+  cargo
 
 # Disable user so it can run on GH (VSCodium)
 # # No Sudo Prompt
