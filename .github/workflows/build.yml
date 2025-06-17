@@ -17,7 +17,7 @@ jobs:
           # - bionic-devtoolset-ppc64le
           - focal-arm64
           - focal-armhf
-          # - focal-ppc64le
+          - focal-ppc64le
           - focal-riscv64
           - focal-x64
           - focal-devtoolset-arm64
