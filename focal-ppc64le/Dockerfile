@@ -13,8 +13,8 @@ RUN echo "deb [arch=ppc64el] http://ports.ubuntu.com/ focal-security main univer
 RUN echo "deb [arch=ppc64el] http://ports.ubuntu.com/ focal-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
 RUN dpkg --add-architecture ppc64el
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  gcc-8-powerpc64le-linux-gnu \
-  g++-8-powerpc64le-linux-gnu \
+  gcc-10-powerpc64le-linux-gnu \
+  g++-10-powerpc64le-linux-gnu \
   binutils-powerpc64le-linux-gnu \
   build-essential \
   git \
@@ -45,15 +45,15 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/so
 RUN apt-get update && apt-get install -y yarn
 
 # Node.js
-RUN curl --silent --location https://deb.nodesource.com/setup_18.x | sudo -E bash -
+RUN curl --silent --location https://deb.nodesource.com/setup_22.x | sudo -E bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN npm install -g npm@latest
 RUN npm install -g node-gyp
 
 ENV AS=/usr/bin/powerpc64le-linux-gnu-as \
   AR=/usr/bin/powerpc64le-linux-gnu-ar \
-  CC=/usr/bin/powerpc64le-linux-gnu-gcc-8 \
-  CPP=/usr/bin/powerpc64le-linux-gnu-cpp-8 \
-  CXX=/usr/bin/powerpc64le-linux-gnu-g++-8 \
+  CC=/usr/bin/powerpc64le-linux-gnu-gcc-10 \
+  CPP=/usr/bin/powerpc64le-linux-gnu-cpp-10 \
+  CXX=/usr/bin/powerpc64le-linux-gnu-g++-10 \
   LD=/usr/bin/powerpc64le-linux-gnu-ld \
   PKG_CONFIG_PATH=/usr/lib/powerpc64le-linux-gnu/pkgconfig
