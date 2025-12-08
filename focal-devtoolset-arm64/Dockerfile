@@ -3,7 +3,7 @@ ARG TAG=20.04
 FROM ${REPO}:${TAG}
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG NODE_VERSION="20.18.2"
+ARG NODE_VERSION="22.20.0"
 
 # ubuntu keeps its i386/amd64 and other architecture repos separate
 # the default i386/amd64 packages can be found in http://archive.ubuntu.com while all other architectures are in http://ports.ubuntu.com/
