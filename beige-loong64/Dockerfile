@@ -1,8 +1,8 @@
 ARG REPO=linuxdeepin/deepin
-ARG TAG=beige-amd64-v1.4.0
+ARG TAG=beige-25-amd64-v1.5.0
 FROM ${REPO}:${TAG}
 
-ARG DOCKER_CE_VERSION=27.3.1
+# ARG DOCKER_CE_VERSION=27.3.1
 
 # Disable user so it can run on GH (VSCodium)
 # RUN groupadd --gid 1000 builduser \
@@ -43,7 +43,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
   python --version
 
 # setup Node.js
-RUN curl --silent --location https://deb.nodesource.com/setup_20.x | sudo -E bash - && \
+RUN curl --silent --location https://deb.nodesource.com/setup_22.x | sudo -E bash - && \
   apt-get update && \
   apt-get install -y nodejs && \
   npm install -g npm@latest node-gyp yarn
