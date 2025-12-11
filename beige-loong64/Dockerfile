@@ -1,8 +1,8 @@
 ARG REPO=linuxdeepin/deepin
-ARG TAG=beige-25-amd64-v1.5.0
+ARG TAG=beige-amd64-v1.4.0
 FROM ${REPO}:${TAG}
 
-# ARG DOCKER_CE_VERSION=27.3.1
+ARG DOCKER_CE_VERSION=27.3.1
 
 # Disable user so it can run on GH (VSCodium)
 # RUN groupadd --gid 1000 builduser \
