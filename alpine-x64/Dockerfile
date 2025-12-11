@@ -1,8 +1,8 @@
 ARG REPO=alpine
-ARG TAG=3.16
+ARG TAG=3.23
 FROM ${REPO}:${TAG}
 
-ARG NODE_VERSION="16.20.2"
+ARG NODE_VERSION="22.20.0"
 
 RUN apk add g++ python3 make git bash curl perl pkgconfig libsecret-dev krb5-dev jq
 

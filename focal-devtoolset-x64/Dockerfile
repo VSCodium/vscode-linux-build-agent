@@ -3,7 +3,7 @@ ARG TAG=20.04
 FROM ${REPO}:${TAG}
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG NODE_VERSION="20.18.2"
+ARG NODE_VERSION="22.20.0"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
   gcc-10 \

@@ -70,7 +70,7 @@ RUN apt-get update && apt-get install -y \
 #   && echo 'Defaults    env_keep += "DEBIAN_FRONTEND"' >> /etc/sudoers.d/env_keep
 
 # Node.js
-RUN curl --silent --location https://deb.nodesource.com/setup_20.x | sudo -E bash -
+RUN curl --silent --location https://deb.nodesource.com/setup_22.x | sudo -E bash -
 RUN apt-get update && apt-get install -y nodejs
 RUN npm install -g npm@latest node-gyp yarn
 

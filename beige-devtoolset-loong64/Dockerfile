@@ -3,7 +3,7 @@ ARG TAG=beige-loong64-v1.4.0
 FROM ${REPO}:${TAG}
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG NODE_VERSION="20.16.0"
+ARG NODE_VERSION="22.20.0"
 
 RUN echo 'deb http://mirrors.kernel.org/deepin/beige beige main commercial community' > /etc/apt/sources.list && \
   apt-get update && \

@@ -43,7 +43,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
   python --version
 
 # setup Node.js
-RUN curl --silent --location https://deb.nodesource.com/setup_20.x | sudo -E bash - && \
+RUN curl --silent --location https://deb.nodesource.com/setup_22.x | sudo -E bash - && \
   apt-get update && \
   apt-get install -y nodejs && \
   npm install -g npm@latest node-gyp yarn
