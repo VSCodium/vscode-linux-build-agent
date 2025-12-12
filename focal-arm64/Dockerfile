@@ -17,8 +17,9 @@ RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-security main un
 RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
 RUN dpkg --add-architecture arm64
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  gcc-10-aarch64-linux-gnu \
-  g++-10-aarch64-linux-gnu \
+  g++-11 \
+  gcc-aarch64-linux-gnu \
+  g++-aarch64-linux-gnu \
   binutils-aarch64-linux-gnu \
   build-essential \
   git \
@@ -69,8 +70,8 @@ RUN g++ --version
 
 ENV AS=/usr/bin/aarch64-linux-gnu-as \
   AR=/usr/bin/aarch64-linux-gnu-ar \
-  CC=/usr/bin/aarch64-linux-gnu-gcc-10 \
-  CPP=/usr/bin/aarch64-linux-gnu-cpp-10 \
-  CXX=/usr/bin/aarch64-linux-gnu-g++-10 \
+  CC=/usr/bin/aarch64-linux-gnu-gcc \
+  CPP=/usr/bin/aarch64-linux-gnu-cpp \
+  CXX=/usr/bin/aarch64-linux-gnu-g++ \
   LD=/usr/bin/aarch64-linux-gnu-ld \
   PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig
