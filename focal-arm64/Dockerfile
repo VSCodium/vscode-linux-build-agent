@@ -17,7 +17,6 @@ RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-security main un
 RUN echo "deb [arch=arm64,armhf] http://ports.ubuntu.com/ focal-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
 RUN dpkg --add-architecture arm64
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  gcc-11 \
   g++-11 \
   gcc-aarch64-linux-gnu \
   g++-aarch64-linux-gnu \
