@@ -26,6 +26,7 @@ jobs:
           - focal-devtoolset-riscv64
           - focal-devtoolset-s390x
           - focal-devtoolset-x64
+          - jammy-arm64
 
     steps:
       - uses: actions/checkout@v3
