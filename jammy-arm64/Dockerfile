@@ -19,6 +19,8 @@ RUN dpkg --add-architecture arm64
 RUN apt-get update && apt-get install -y --no-install-recommends \
   binutils-aarch64-linux-gnu \
   build-essential \
+  gcc-aarch64-linux-gnu \
+  g++-aarch64-linux-gnu \
   git \
   pkg-config \
   fakeroot \
@@ -65,10 +67,10 @@ RUN g++ --version
 # USER builduser
 # WORKDIR /home/builduser
 
-# ENV AS=/usr/bin/aarch64-linux-gnu-as \
-#   AR=/usr/bin/aarch64-linux-gnu-ar \
-#   CC=/usr/bin/aarch64-linux-gnu-gcc-10 \
-#   CPP=/usr/bin/aarch64-linux-gnu-cpp-10 \
-#   CXX=/usr/bin/aarch64-linux-gnu-g++-10 \
-#   LD=/usr/bin/aarch64-linux-gnu-ld \
-#   PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig
+ENV AS=/usr/bin/aarch64-linux-gnu-as \
+  AR=/usr/bin/aarch64-linux-gnu-ar \
+  CC=/usr/bin/aarch64-linux-gnu-gcc \
+  CPP=/usr/bin/aarch64-linux-gnu-cpp \
+  CXX=/usr/bin/aarch64-linux-gnu-g++ \
+  LD=/usr/bin/aarch64-linux-gnu-ld \
+  PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig
