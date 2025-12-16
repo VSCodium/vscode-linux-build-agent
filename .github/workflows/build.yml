@@ -19,6 +19,7 @@ jobs:
           - focal-armhf
           - focal-ppc64le
           - focal-riscv64
+          - focal-s390x
           - focal-x64
           - focal-devtoolset-arm64
           - focal-devtoolset-armhf
