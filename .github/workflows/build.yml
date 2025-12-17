@@ -12,8 +12,8 @@ jobs:
         arch:
           - alpine-arm64
           - alpine-x64
-          - beige-loong64
           - beige-devtoolset-loong64
+          - crimson-loong64
           # - bionic-devtoolset-ppc64le
           - focal-arm64
           - focal-armhf
@@ -36,7 +36,7 @@ jobs:
         if: "!endsWith(matrix.arch, 'x64') && !endsWith(matrix.arch, 'loong64')"
 
       - name: Set up QEMU for Loong64
-        run: docker run --rm --privileged loongcr.lcpu.dev/multiarch/archlinux --reset -p yes
+        run: docker run --privileged --rm tonistiigi/binfmt --install loong64
         if: "endsWith(matrix.arch, 'loong64')"
 
       - name: Set up Docker Buildx

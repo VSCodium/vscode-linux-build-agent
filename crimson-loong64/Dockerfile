@@ -1,5 +1,5 @@
 ARG REPO=linuxdeepin/deepin
-ARG TAG=beige-amd64-v1.4.0
+ARG TAG=crimson
 FROM ${REPO}:${TAG}
 
 ARG DOCKER_CE_VERSION=27.3.1
@@ -10,7 +10,7 @@ ARG DOCKER_CE_VERSION=27.3.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN dpkg --add-architecture loong64 && \
-  echo 'deb [arch=amd64,i386,loong64] http://mirrors.kernel.org/deepin/beige beige main commercial community' > /etc/apt/sources.list && \
+  echo 'deb [arch=amd64,i386,loong64] http://mirrors.kernel.org/deepin/beige crimson main commercial community' > /etc/apt/sources.list && \
   apt-get update && \
   # --force-overwrite to work around a strange error:
   # dpkg: error processing archive /tmp/apt-dpkg-install-sG9gCG/20-linux-libc-dev_23.01.01.18_amd64.deb (--unpack):
