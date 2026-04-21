@@ -51,7 +51,7 @@ RUN python --version
 # Node.js
 RUN curl --silent --location https://deb.nodesource.com/setup_22.x | sudo -E bash -
 RUN apt-get update && apt-get install -y nodejs
-RUN npm install -g npm@latest node-gyp yarn
+RUN npm install -g npm@10 node-gyp yarn
 
 # Install docker client
 RUN sudo mkdir -m 0755 -p /etc/apt/keyrings
