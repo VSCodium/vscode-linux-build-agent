@@ -1,5 +1,5 @@
 ARG REPO=linuxdeepin/deepin
-ARG TAG=crimson-loong64
+ARG TAG=crimson
 FROM ${REPO}:${TAG}
 
 ARG DOCKER_CE_VERSION=27.3.1
@@ -9,8 +9,10 @@ ARG DOCKER_CE_VERSION=27.3.1
 #   && useradd --uid 1000 --gid builduser --shell /bin/bash --create-home builduser
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN echo 'deb [loong64] http://mirrors.kernel.org/deepin/beige crimson main commercial community' > /etc/apt/sources.list && \
-  apt-get update && \
+RUN sed -i "s/^deb/deb [arch=amd64,i386]/g" /etc/apt/sources.list
+RUN echo 'deb [arch=loong64] http://mirrors.kernel.org/deepin/beige crimson main commercial community' > /etc/apt/sources.list
+RUN dpkg --add-architecture loong64
+RUN apt-get update && \
   # --force-overwrite to work around a strange error:
   # dpkg: error processing archive /tmp/apt-dpkg-install-sG9gCG/20-linux-libc-dev_23.01.01.18_amd64.deb (--unpack):
   # trying to overwrite shared '/usr/share/doc/linux-libc-dev/changelog.gz', which is different from other instances of package linux-libc-dev:amd64
