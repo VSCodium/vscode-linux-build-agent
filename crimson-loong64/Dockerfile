@@ -10,7 +10,7 @@ ARG DOCKER_CE_VERSION=27.3.1
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN sed -i "s/^deb/deb [arch=amd64,i386]/g" /etc/apt/sources.list
-RUN echo 'deb [arch=loong64] http://mirrors.kernel.org/deepin/beige crimson main commercial community' > /etc/apt/sources.list
+RUN echo 'deb [arch=amd64,i386,loong64] http://mirrors.kernel.org/deepin/beige crimson main commercial community' > /etc/apt/sources.list
 RUN dpkg --add-architecture loong64
 RUN apt-get update && \
   # --force-overwrite to work around a strange error:
