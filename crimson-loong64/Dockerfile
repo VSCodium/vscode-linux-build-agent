@@ -9,14 +9,22 @@ ARG DOCKER_CE_VERSION=27.3.1
 #   && useradd --uid 1000 --gid builduser --shell /bin/bash --create-home builduser
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN sed -i "s/^deb/deb [arch=amd64,i386]/g" /etc/apt/sources.list
-RUN echo 'deb [arch=amd64,i386,loong64] http://mirrors.kernel.org/deepin/beige crimson main commercial community' > /etc/apt/sources.list
+RUN echo 'deb [arch=amd64,i386,loong64] https://community-packages.deepin.com/beige crimson main commercial community' > /etc/apt/sources.list
 RUN dpkg --add-architecture loong64
-RUN apt-get update && \
-  # --force-overwrite to work around a strange error:
-  # dpkg: error processing archive /tmp/apt-dpkg-install-sG9gCG/20-linux-libc-dev_23.01.01.18_amd64.deb (--unpack):
-  # trying to overwrite shared '/usr/share/doc/linux-libc-dev/changelog.gz', which is different from other instances of package linux-libc-dev:amd64
-  apt-get install -y -f -o Dpkg::Options::="--force-overwrite" --no-install-recommends \
+RUN apt-get update
+
+# Work around Multi-Arch: same version skew between linux-libc-dev:amd64
+# (25.01.01.20) and :loong64 (25.01.01.21) in the crimson index. Pin both
+# architectures to a matching pair from the pool and hold them.
+RUN curl -fL -o /tmp/linux-libc-dev_amd64.deb \
+    https://community-packages.deepin.com/beige/pool/main/l/linux-upstream/linux-libc-dev_25.01.01.05_amd64.deb && \
+  curl -fL -o /tmp/linux-libc-dev_loong64.deb \
+    https://community-packages.deepin.com/beige/pool/main/l/linux-upstream/linux-libc-dev_25.01.01.05_loong64.deb && \
+  dpkg -i --force-overwrite /tmp/linux-libc-dev_amd64.deb /tmp/linux-libc-dev_loong64.deb && \
+  apt-mark hold linux-libc-dev && \
+  rm /tmp/linux-libc-dev_*.deb
+
+RUN apt-get install -y -f -o Dpkg::Options::="--force-overwrite" --no-install-recommends \
     gcc-12-loongarch64-linux-gnu \
     g++-12-loongarch64-linux-gnu \
     binutils-loongarch64-linux-gnu \
