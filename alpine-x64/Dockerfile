@@ -15,8 +15,8 @@ RUN curl -L -O https://unofficial-builds.nodejs.org/download/release/v${NODE_VER
     rm -rf node-v${NODE_VERSION}-linux-x64-musl* && \
     node --version
 
-# install yarn, node-gyp
-RUN npm install -g yarn node-gyp
+# install node-gyp
+RUN npm install -g node-gyp
 
 RUN mkdir -p /root/vscode
 WORKDIR /root/vscode

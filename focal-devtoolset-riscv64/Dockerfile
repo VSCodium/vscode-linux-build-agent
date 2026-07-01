@@ -50,8 +50,8 @@ RUN python --version
 RUN curl --silent --location https://deb.nodesource.com/setup_24.x | sudo -E bash -
 RUN apt-get update && apt-get install -y nodejs
 
-# install yarn & node-gyp
-RUN npm install -g yarn node-gyp
+# install node-gyp
+RUN npm install -g node-gyp
 
 RUN mkdir -p /root/vscode
 WORKDIR /root/vscode

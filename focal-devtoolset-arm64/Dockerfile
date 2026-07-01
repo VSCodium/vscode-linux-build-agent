@@ -48,8 +48,8 @@ RUN curl -L -O https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-li
     rm -rf node-v${NODE_VERSION}-linux-arm64* && \
     node --version
 
-# install yarn & node-gyp
-RUN npm install -g yarn node-gyp
+# install node-gyp
+RUN npm install -g node-gyp
 
 # Set gcc-10 as default
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/aarch64-linux-gnu-gcc-10 10

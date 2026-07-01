@@ -55,7 +55,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
 RUN curl --silent --location https://deb.nodesource.com/setup_24.x | sudo -E bash - && \
   apt-get update && \
   apt-get install -y nodejs && \
-  npm install -g npm@10 node-gyp yarn
+  npm install -g npm@10 node-gyp
 
 # Install docker client
 RUN curl -LO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_CE_VERSION}.tgz && \

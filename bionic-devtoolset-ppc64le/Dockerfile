@@ -45,8 +45,7 @@ RUN curl -L -O https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-li
     tar -xzf node-v${NODE_VERSION}-linux-ppc64le.tar.gz && \
     cp -R node-v${NODE_VERSION}-linux-ppc64le/* /usr/local/ && \
     rm -rf node-v${NODE_VERSION}-linux-ppc64le* && \
-    node --version && \
-    npm install -g yarn
+    node --version
 
 RUN mkdir -p /root/vscode
 WORKDIR /root/vscode
