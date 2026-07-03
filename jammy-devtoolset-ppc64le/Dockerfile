@@ -9,9 +9,9 @@ ARG NODE_VERSION="24.15.0"
 # the default i386/amd64 packages can be found in http://archive.ubuntu.com while all other architectures are in http://ports.ubuntu.com/
 # add the required repos for ppc64el and only fetch i386/amd64 from archive.ubuntu.com (to prevent apt from erroring about missing architecture support)
 RUN sed -i "s/^deb/deb [arch=amd64,i386]/g" /etc/apt/sources.list
-RUN echo "deb [arch=ppc64el] http://ports.ubuntu.com/ focal main universe multiverse restricted" | tee -a /etc/apt/sources.list
-RUN echo "deb [arch=ppc64el] http://ports.ubuntu.com/ focal-security main universe multiverse restricted" | tee -a /etc/apt/sources.list
-RUN echo "deb [arch=ppc64el] http://ports.ubuntu.com/ focal-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
+RUN echo "deb [arch=ppc64el] http://ports.ubuntu.com/ jammy main universe multiverse restricted" | tee -a /etc/apt/sources.list
+RUN echo "deb [arch=ppc64el] http://ports.ubuntu.com/ jammy-security main universe multiverse restricted" | tee -a /etc/apt/sources.list
+RUN echo "deb [arch=ppc64el] http://ports.ubuntu.com/ jammy-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
 RUN dpkg --add-architecture ppc64el
 RUN apt-get update && apt-get install -y --no-install-recommends \
   gcc-10-powerpc64le-linux-gnu \

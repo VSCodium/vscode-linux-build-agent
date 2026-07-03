@@ -8,9 +8,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 # the default i386/amd64 packages can be found in http://archive.ubuntu.com while all other architectures are in http://ports.ubuntu.com/
 # add the required repos for riscv64 and only fetch i386/amd64 from archive.ubuntu.com (to prevent apt from erroring about missing architecture support)
 RUN sed -i "s/^deb/deb [arch=amd64,i386]/g" /etc/apt/sources.list
-RUN echo "deb [arch=riscv64] http://ports.ubuntu.com/ focal main universe multiverse restricted" | tee -a /etc/apt/sources.list
-RUN echo "deb [arch=riscv64] http://ports.ubuntu.com/ focal-security main universe multiverse restricted" | tee -a /etc/apt/sources.list
-RUN echo "deb [arch=riscv64] http://ports.ubuntu.com/ focal-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
+RUN echo "deb [arch=riscv64] http://ports.ubuntu.com/ jammy main universe multiverse restricted" | tee -a /etc/apt/sources.list
+RUN echo "deb [arch=riscv64] http://ports.ubuntu.com/ jammy-security main universe multiverse restricted" | tee -a /etc/apt/sources.list
+RUN echo "deb [arch=riscv64] http://ports.ubuntu.com/ jammy-updates main universe multiverse restricted" | tee -a /etc/apt/sources.list
 RUN dpkg --add-architecture riscv64
 RUN apt-get update && apt-get install -y --no-install-recommends \
   gcc-10-riscv64-linux-gnu \
