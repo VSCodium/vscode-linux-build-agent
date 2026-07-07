@@ -3,6 +3,9 @@ ARG TAG=22.04
 FROM ${REPO}:${TAG}
 
 ARG DEBIAN_FRONTEND=noninteractive
+ARG NODE_VERSION="24.18.0"
+ARG NODE_LOCAL_REVISION="1"
+ARG NODE_SHA256="65109e57e34279184efcca5888bc156cff3d24bf8eead73de16a28a313c18884"
 
 # ubuntu keeps its i386/amd64 and other architecture repos separate
 # the default i386/amd64 packages can be found in http://archive.ubuntu.com while all other architectures are in http://ports.ubuntu.com/
@@ -41,8 +44,14 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 RUN python --version
 
 # Setup Node.js
-RUN curl --silent --location https://deb.nodesource.com/setup_24.x | sudo -E bash -
-RUN apt-get update && apt-get install -y nodejs
+RUN set -eux; \
+  NODE_DISTRO="node-v${NODE_VERSION}-linux-riscv64-local${NODE_LOCAL_REVISION}"; \
+  curl -fsSLO "https://github.com/riscv-forks/node-riscv/releases/download/v${NODE_VERSION}-riscv64.${NODE_LOCAL_REVISION}/${NODE_DISTRO}.tar.gz"; \
+  echo "${NODE_SHA256}  ${NODE_DISTRO}.tar.gz" | sha256sum -c -; \
+  tar -xzf "${NODE_DISTRO}.tar.gz"; \
+  cp -R "${NODE_DISTRO}"/* /usr/local/; \
+  rm -rf "${NODE_DISTRO}"*; \
+  node --version
 
 # Install node-gyp
 RUN npm install -g node-gyp
